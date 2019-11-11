@@ -932,11 +932,10 @@ class Table extends Tag
 							} elseif ($this->mpdf->ColActive && $tableheight > (($this->mpdf->h - $this->mpdf->bMargin) - $this->mpdf->y0)) {
 								$this->mpdf->AddPage($this->mpdf->CurOrientation);
 							}
-							//ID3128 condusef si existe una leyenda oculta para el bloque de firma. esta se muestra, ya que cambio de hoja.
-							if(class_exists('AContrato_PDF')
-							     && method_exists('AContrato_PDF', 'makeUpDataPDF')){
-								AContrato_PDF::makeUpData($ahtml, $ihtml);
-							}
+							//ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
+						        if(method_exists($this->mpdf,'makeUpDataPDF')){
+							   $this->mpdf->makeUpDataPDF($ahtml, $ihtml);
+						        }
 							
 							$this->mpdf->kwt_moved = true;
 						}
