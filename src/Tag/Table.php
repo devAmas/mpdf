@@ -276,8 +276,7 @@ class Table extends Tag
 
 		if (isset($properties['FONT-SIZE'])) {
 			if ($this->mpdf->tableLevel > 1) {
-				$tableFontSize = $this->sizeConverter->convert($this->mpdf->base_table_properties['FONT-SIZE']);
-				$mmsize = $this->sizeConverter->convert($properties['FONT-SIZE'], $tableFontSize);
+				$mmsize = $this->sizeConverter->convert($properties['FONT-SIZE'], $this->mpdf->base_table_properties['FONT-SIZE']);
 			} else {
 				$mmsize = $this->sizeConverter->convert($properties['FONT-SIZE'], $this->mpdf->default_font_size / Mpdf::SCALE);
 			}
@@ -932,11 +931,11 @@ class Table extends Tag
 							} elseif ($this->mpdf->ColActive && $tableheight > (($this->mpdf->h - $this->mpdf->bMargin) - $this->mpdf->y0)) {
 								$this->mpdf->AddPage($this->mpdf->CurOrientation);
 							}
-							//ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
-						        if(method_exists($this->mpdf,'makeUpDataPDF')){
-							   $this->mpdf->makeUpDataPDF($ahtml, $ihtml);
-						        }
-							
+                            //ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
+                            if(method_exists($this->mpdf,'makeUpDataPDF')){
+                                $this->mpdf->makeUpDataPDF($ahtml, $ihtml);
+                            }
+                            
 							$this->mpdf->kwt_moved = true;
 						}
 						$added_page = true;
