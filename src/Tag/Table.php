@@ -909,10 +909,19 @@ class Table extends Tag
 						$recalculate = $this->tbsqrt($tableheight / $fullpage, 1);
 					} elseif ($this->mpdf->tableMinSizePriority) {
 						$this->mpdf->table_keep_together = false;
+						
+						//ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
+						if(method_exists($this->mpdf,'makeUpDataPDF')){
+						    $this->mpdf->makeUpDataPDF($ahtml, $ihtml);
+						}
 						$recalculate = 1.001;
 					} else {
 						if ($this->mpdf->y != $this->mpdf->tMargin) {
 							$this->mpdf->AddPage($this->mpdf->CurOrientation);
+							//ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
+						        if(method_exists($this->mpdf,'makeUpDataPDF')){
+							    $this->mpdf->makeUpDataPDF($ahtml, $ihtml);
+						        }
 							$this->mpdf->kwt_moved = true;
 						}
 						$added_page = true;
