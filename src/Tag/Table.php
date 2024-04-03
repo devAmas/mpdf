@@ -962,9 +962,9 @@ class Table extends Tag
 					}
 				} else {
 					//ID3128 condusef if there is a hidden legend for the signature block. This is shown, since I change the sheet.
-					if(method_exists($this->mpdf,'makeUpDataPDF')){
+					/*if(method_exists($this->mpdf,'makeUpDataPDF')){
 						$this->mpdf->makeUpDataPDF($ahtml, $ihtml);
-					}
+					}*/
 					$recalculate = 1;
 				}
 			} else {
