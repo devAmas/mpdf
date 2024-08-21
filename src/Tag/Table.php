@@ -10,6 +10,11 @@ class Table extends Tag
 
 	public function open($attr, &$ahtml, &$ihtml)
 	{
+		//ID3415 Firma Facsimilar. Additional actions when opening the table. It identifies on which page the signature table starts and at which coordinates
+		if(method_exists($this->mpdf,'openTablePDF')){
+			$this->mpdf->openTablePDF($ahtml, $ihtml);
+		}
+
 		$this->mpdf->tdbegin = false;
 		$this->mpdf->lastoptionaltag = '';
 		// Disable vertical justification in columns
